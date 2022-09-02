@@ -32,7 +32,10 @@ const getBalances = async () => {
       const address = addresses[i];
       const balanceOf = await editionDrop.balanceOf(address, 0);
       const objectToPush = { address, quantity: balanceOf.toString() };
-      balances.push(objectToPush);
+
+      if (objectToPush.quantity !== "0") {
+        balances.push(objectToPush);
+      }
 
       writeStream.write(
         JSON.stringify(objectToPush) +
