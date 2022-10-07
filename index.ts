@@ -16,13 +16,12 @@ const alchemy = new Alchemy(settings);
 const sdk = new ThirdwebSDK('ethereum');
 
 const contractAddress = '0xa6146896d6605c1b54af5ef861d5de2de1101646'; // Replace with your contract address
-const tokenId = '0'; // Replace with the token ID to check the balance of.
 
-const editionDrop = sdk.getEditionDrop(contractAddress);
+const nftDrop = await sdk.getNFTDrop(contractAddress);
 
 const getBalances = async () => {
   const addresses = (
-    await alchemy.nft.getOwnersForNft(contractAddress, tokenId)
+    await alchemy.nft.getOwnersForContract(contractAddress)
   ).owners.filter((addr) => addr !== constants.AddressZero);
   const balances: { address: string; quantity: string }[] = [];
   const writeStream = createWriteStream('output.json');
@@ -30,7 +29,7 @@ const getBalances = async () => {
   try {
     for (let i = 0; i < addresses.length; i++) {
       const address = addresses[i];
-      const balanceOf = await editionDrop.balanceOf(address, 0);
+      const balanceOf = await nftDrop.balanceOf(address);
       const objectToPush = { address, quantity: balanceOf.toString() };
       balances.push(objectToPush);
 
