@@ -12,7 +12,6 @@
   "dependencies": {
     "@thirdweb-dev/sdk": "^3.4.2",
     "alchemy-sdk": "^2.2.0",
-    "dotenv": "^16.0.3",
     "ethers": "^5.7.2"
   }
 }
