@@ -1,6 +1,6 @@
 # Get owners with the quantity owned
 
-Get a JSON with the owners and the quantity of each owned item.
+Get a JSON with the owners and the quantity of each owned item for any ERC1155 contract.
 
 ## Usage
 
